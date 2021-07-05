@@ -1,0 +1,45 @@
+2021-07-05 20:45:36,035 - mmdet - INFO - workflow: [('train', 1)], max: 12 epochs
+Traceback (most recent call last):
+  File "/home/seeker/Swin-Transformer-Object-Detection/tools/train.py", line 187, in <module>
+    main()
+  File "/home/seeker/Swin-Transformer-Object-Detection/tools/train.py", line 176, in main
+    train_detector(
+  File "/home/seeker/Swin-Transformer-Object-Detection/mmdet/apis/train.py", line 185, in train_detector
+    runner.run(data_loaders, cfg.workflow)
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/mmcv/runner/epoch_based_runner.py", line 125, in run
+    epoch_runner(data_loaders[i], **kwargs)
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/mmcv/runner/epoch_based_runner.py", line 47, in train
+    for i, data_batch in enumerate(self.data_loader):
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1199, in _next_data
+    return self._process_data(data)
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1225, in _process_data
+    data.reraise()
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/torch/_utils.py", line 429, in reraise
+    raise self.exc_type(msg)
+cv2.error: Caught error in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/torch/utils/data/_utils/worker.py", line 202, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/seeker/Swin-Transformer-Object-Detection/mmdet/datasets/custom.py", line 193, in __getitem__
+    data = self.prepare_train_img(idx)
+  File "/home/seeker/Swin-Transformer-Object-Detection/mmdet/datasets/custom.py", line 216, in prepare_train_img
+    return self.pipeline(results)
+  File "/home/seeker/Swin-Transformer-Object-Detection/mmdet/datasets/pipelines/compose.py", line 40, in __call__
+    data = t(data)
+  File "/home/seeker/Swin-Transformer-Object-Detection/mmdet/datasets/pipelines/transforms.py", line 534, in __call__
+    self._pad_masks(results)
+  File "/home/seeker/Swin-Transformer-Object-Detection/mmdet/datasets/pipelines/transforms.py", line 515, in _pad_masks
+    results[key] = results[key].pad(pad_shape, pad_val=self.pad_val)
+  File "/home/seeker/Swin-Transformer-Object-Detection/mmdet/core/mask/structures.py", line 303, in pad
+    padded_masks = np.stack([
+  File "/home/seeker/Swin-Transformer-Object-Detection/mmdet/core/mask/structures.py", line 304, in <listcomp>
+    mmcv.impad(mask, shape=out_shape, pad_val=pad_val)
+  File "/home/seeker/miniconda3/envs/torch/lib/python3.9/site-packages/mmcv/image/geometric.py", line 443, in impad
+    img = cv2.copyMakeBorder(
+cv2.error: OpenCV(4.5.2) /tmp/pip-req-build-qm9qliph/opencv/modules/core/src/copy.cpp:1026: error: (-215:Assertion failed) top >= 0 && bottom >= 0 && left >= 0 && right >= 0 && _src.dims() <= 2 in function 'copyMakeBorder'
