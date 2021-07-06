@@ -78,6 +78,7 @@ model = dict(
         rpn=dict(
             assigner=dict(
                 type='MaxIoUAssigner',
+                gpu_assign_thr=20,
                 pos_iou_thr=0.7,
                 neg_iou_thr=0.3,
                 min_pos_iou=0.3,
